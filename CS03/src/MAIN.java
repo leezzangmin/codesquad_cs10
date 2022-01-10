@@ -15,22 +15,22 @@ public class MAIN {
         final int movie_id = 1;
         final int location = 2;
         String[] unique_id = {"abcd","afbc","bdfa","afaf","abab","acdc","bdbd","baaa","cafe","ccef","afcd","fabd","dcba"};
+        linked_list LL= new linked_list();
         while(true) {
-            linked_list LL= new linked_list();
             String inputLine = input.nextLine();
             String[] userInput = inputLine.split("\\s+");
 
             if (userInput[instrucion].equals( "add" )){
-                LL.insertNode(collect.get(Arrays.asList(unique_id).indexOf(userInput[movie_id])),LL.getSize());
+                LL.insertNode(collect.get(Arrays.asList(unique_id).indexOf(userInput[movie_id])),LL.getSize()+1);
             }
             else if(userInput[instrucion].equals("insert")){
-
+                LL.insertNode(collect.get(Arrays.asList(unique_id).indexOf(userInput[movie_id])),Integer.parseInt(userInput[location]));
             }
             else if(userInput[instrucion].equals("delete")){
-
+                LL.deleteNode(userInput[movie_id]);
             }
             else if(userInput[instrucion] .equals("render")){
-
+                LL.render();
             }
             else if(userInput[instrucion].equals("exit")){
                 System.out.println("종료");
