@@ -1,12 +1,12 @@
 import java.util.Random;
 public class movie_data_class {
-    String id;
-    String subject;
-    int duration;
-    String connect;
+    private String id;
+    private String subject;
+    private int duration;
+    private String connect;
 
-    static String[] unique_id = {"abcd","afbc","bdfa","afaf","abab","acdc","bdbd","baaa","cafe","ccef","afcd","fabd","dcba"};
-    static int unique_id_index=0;
+    private static String[] unique_id = {"abcd","afbc","bdfa","afaf","abab","acdc","bdbd","baaa","cafe","ccef","afcd","fabd","dcba"};
+    private static int unique_id_index=0;
 
     movie_data_class(int _subject){
         this.id = unique_id[unique_id_index++];
@@ -29,4 +29,10 @@ public class movie_data_class {
         System.out.println(temp);
     }
 
+    public String get_id(){
+        return id;
+    }
+    public int get_duration(){
+        return duration;
+    }
 }
