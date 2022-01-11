@@ -21,7 +21,7 @@ public class MAIN {
             String[] userInput = inputLine.split("\\s+");
 
             if (userInput[instrucion].equals( "add" )){
-                LL.insertNode(collect.get(Arrays.asList(unique_id).indexOf(userInput[movie_id])),LL.getSize()+1);
+                LL.insertNode(collect.get(Arrays.asList(unique_id).indexOf(userInput[movie_id])),LL.getSize());
             }
             else if(userInput[instrucion].equals("insert")){
                 LL.insertNode(collect.get(Arrays.asList(unique_id).indexOf(userInput[movie_id])),Integer.parseInt(userInput[location]));

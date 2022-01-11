@@ -6,9 +6,7 @@ public class linked_list {
     private int size = 0;
 
     private class Node{
-        // 데이터가 저장될 필드
         private movie_data_class data;
-        // 다음 노드를 가리키는 필드
         private Node next;
         public Node(movie_data_class input) {
             this.data = input;
@@ -18,7 +16,7 @@ public class linked_list {
     }
     Node findNodeByIndex(int index) {
         Node x = head;
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < index-1; i++) {
             x = x.next;
         }
         return x;
@@ -26,7 +24,7 @@ public class linked_list {
     Node findNodeById(String id){
         Node x = head;
         for (int i = 0; i < size; i++) {
-            if (x.next.data.get_id().equals(id)){
+            if (x.data.get_id().equals(id)){
                 return x;
             }
             else if(x.data == null){
@@ -43,23 +41,21 @@ public class linked_list {
         Node newNode = new Node(_data);
         if (size==0){ // 원소가 0개
             head = newNode;
-            head.next = newNode;
             if(newNode.next==null){
                 tail=newNode;
             }
         }
         else if (size>=1){
-            System.out.println("index : "+index+"size: "+getSize());
-
             if(index==0){ // 처음부분에 삽입
-                newNode.next=head.next;
-                head.next=newNode;
+                head.next=newNode.next;
+                head=newNode;
             }
 
             else if(index>=1) {
-                Node tmp1 = findNodeByIndex(index - 1);
+                Node tmp1 = findNodeByIndex(index);
                 newNode.next=tmp1.next;
                 tmp1.next=newNode;
+
                 if (newNode.next == null) {
                     tail=newNode;
                 }
@@ -79,8 +75,8 @@ public class linked_list {
         Node x = head;
         int wholeDuration=0;
         for(int i=0;i<size;i++){
-            x=x.next;
             wholeDuration+=x.data.get_duration();
+            x=x.next;
         }
         System.out.println("영상클립 : "+size+"개");
         System.out.println("전체길이 :"+wholeDuration+"sec");
@@ -89,9 +85,9 @@ public class linked_list {
         Node x = head;
         String timeline="|---";
         for(int i=0;i<size;i++){
-            x=x.next;
             timeline+="["+x.data.get_id()+", ";
             timeline+=x.data.get_duration()+"sec"+"]---";
+            x=x.next;
         }
         timeline+="[end]";
         System.out.println(timeline);
