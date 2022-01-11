@@ -23,16 +23,16 @@ public class linked_list {
     }
     Node findNodeById(String id){
         Node x = head;
+        if (x.data.get_id().equals(id)) {
+            return null;
+        }
         for (int i = 0; i < size; i++) {
-            if (x.data.get_id().equals(id)){
+            if (x.next.data.get_id().equals(id)){
                 return x;
-            }
-            else if(x.data == null){
-                return null;
             }
             x=x.next;
         }
-        return null;
+        return x;
     }
     public int getSize(){
         return size;
@@ -65,10 +65,13 @@ public class linked_list {
     }
     public void deleteNode(String id){
         Node a = findNodeById(id);
-        a.next=(a.next).next;
-        if (a.next==null){
-            tail=a;
+        if (a!=null) {
+            a.next = (a.next).next;
         }
+        else{
+            head=head.next;
+        }
+
         size-=1;
     }
     public void render(){
