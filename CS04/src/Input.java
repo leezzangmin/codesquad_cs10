@@ -1,7 +1,7 @@
 import java.util.*;
 public class Input {
-    private int numberOfArguments;
-//(10,10)-(14,15)
+    //private int numberOfArguments;
+    //(10,10)-(14,15)
     public Coordinate[] userInput(){
         System.out.println("> 좌표를 입력하세요.");
         Scanner scan = new Scanner(System.in);
@@ -9,8 +9,7 @@ public class Input {
                                  .replace("(","")
                                  .replace(")","")
                                  .split("-");
-        numberOfArguments = userInput.length;
-        Coordinate[] tmpCoordinate = new Coordinate[ numberOfArguments ];
+        Coordinate[] tmpCoordinate = new Coordinate[ userInput.length ];
 
         for(int i=0;i<userInput.length;i++){
             String[] tmp = userInput[ i ].split(",");
@@ -20,14 +19,12 @@ public class Input {
         return tmpCoordinate;
     }
 
-    public static boolean isCoordinateValid(int X, int Y) {
-        if(0<=X && X<=24 && 0<=Y && Y<=24){
-            return true;
+    public static boolean isCoordinateValid(Coordinate[] tmp) {
+        for(int i=0;i<tmp.length;i++){
+            if(tmp[i].getX()<0 || tmp[i].getY()<0) {
+                return false;
+            }
         }
-        return false;
-    }
-
-    public int getNumberOfArguments(){
-        return numberOfArguments;
+        return true;
     }
 }
