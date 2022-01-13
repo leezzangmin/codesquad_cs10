@@ -1,9 +1,16 @@
 import java.util.*;
 public class Input {
-    private int X;
-    private int Y;
 
-    public
+
+    public static Coordinate[] userInput(){
+
+
+
+
+
+        Coordinate[] tmpCoordinate = new Coordinate[100];
+        return tmpCoordinate;
+    }
 
     public static boolean isValid(int X, int Y){
         return true;
