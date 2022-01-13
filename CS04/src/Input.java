@@ -3,6 +3,7 @@ public class Input {
     private int numberOfArguments;
 //(10,10)-(14,15)
     public Coordinate[] userInput(){
+        System.out.println("> 좌표를 입력하세요.");
         Scanner scan = new Scanner(System.in);
         String[] userInput = scan.nextLine()
                                  .replace("(","")

@@ -5,7 +5,7 @@ public class Coordinate {
     Coordinate(int toX, int toY){
         this.X=toX;
         this.Y=toY;
-        System.out.printf("%d %d\n",toX,toY);
+//        System.out.printf("%d %d\n",toX,toY);
     }
 
     public int getX(){
