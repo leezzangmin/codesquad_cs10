@@ -1,11 +1,15 @@
 public class Square extends Line{
 
-    private double area;
     @Override
-    protected double getArea() {
+    public double calcArea() {
         int width;
         int height;
-        return 0.0;
+        return 29.0;
+    }
+
+    @Override
+    public double getArea(){
+        return this.area;
     }
 
     private boolean isValidSquare(Coordinate[] Coordinates){
@@ -15,14 +19,17 @@ public class Square extends Line{
     Square(Coordinate[] Coordinates){
         this.Coordinates = Coordinates;
         if (isValidSquare(this.Coordinates)){
-            area = getArea();
+            this.area = calcArea();
         }
         else {
-            area = - 999;
+            this.area = - 999;
         }
     }
 
     Square(int height, int width){
-        area = (double)height * width;
+        this.area = (double)height * width;
     }
+
+
+
 }
