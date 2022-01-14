@@ -17,6 +17,7 @@ public class MAIN {
             break;
         }
 
+
         if ((MainCoordinate.length) == 2) {
             Line l1 = new Line(MainCoordinate);
             System.out.println(l1.getDistance(0,1));
