@@ -3,25 +3,25 @@ import java.util.ArrayList;
 public class StackAndHeap {
 
     //public Array<String> stackAndHeapList ;
-    private String[] stackAndHeapList ;
+    public String[] stackAndHeapList ;
 
     private final String stackBaseAddressPointer;
-    private String stackCurrentAddressPointer;
+    public int stackCurrentAddressPointer;
 
-    private final String heapBaseAddressPointer;
-    private String heapCurrentAddressPointer;
+    private int heapBaseAddressPointer;
+    public int heapCurrentAddressPointer;
 
-    
+
     StackAndHeap(int stackSize, int heapSize) {
         stackAndHeapList  = new String[stackSize + heapSize];
-        stackBaseAddressPointer = getBaseAddress();
-        stackCurrentAddressPointer = stackBaseAddressPointer;
-        heapBaseAddressPointer = stackBaseAddressPointer + stackSize;
-        heapCurrentAddressPointer = heapBaseAddressPointer;
+        stackBaseAddressPointer = getAddress();
+        stackCurrentAddressPointer = 0;
+        heapBaseAddressPointer = stackSize;
+        heapCurrentAddressPointer = 0;
         System.out.println("stack= "+stackBaseAddressPointer+"\nheap= "+heapBaseAddressPointer);
     }
 
-    public String getBaseAddress(){
+    public String getAddress(){
         return stackAndHeapList.toString();
     }
 //    @Override

@@ -7,23 +7,21 @@ public class Memory {
     private int heapSize;
     private static HashMap<String,Integer> typeSize = new HashMap<String,Integer>();
 
-
     public String init(int stackSize, int heapSize){
         this.stackSize = stackSize;
         this.heapSize = heapSize;
 
-        stackAndHeap = new StackAndHeap(stackSize,heapSize);
+        stackAndHeap = new StackAndHeap(stackSize, heapSize);
 
-        return stackAndHeap.getBaseAddress();
+        return stackAndHeap.getAddress();
     }
 
     public void setSize(String type, int length){
-
         if (typeSize.containsKey(type)){
-            System.out.println("error setSize");
+            System.out.println("error setSize 1");
             return;
         }
-        if  ( (length==1) || (length==2) || (length==4) || (length==8) || (length==16) || (length==32) ){
+        if  ( length==1 || length==2 || length==4 || length==8 || length==16 || length==32 ){
             typeSize.put(type,length);
         }
         else{
@@ -31,13 +29,25 @@ public class Memory {
         }
     }
 
-    public String malloc(String type, int count){
-        if (typeSize.get(type)<8){
-
+    public int malloc(String type, int count){
+        int padding = 0;
+        if (! typeSize.containsKey(type)){
+            throw new RuntimeException();
         }
 
-        return "asdf";
+        if (typeSize.get(type)<8){
+            padding = 8 - typeSize.get(type);
+        }
+
+        for(int i = 0; i < (typeSize.get(type) + padding) * count ; i++){
+            stackAndHeap.stackAndHeapList[ stackAndHeap.heapCurrentAddressPointer++ ] = "occupied";
+        }
+        stackAndHeap.stackCurrentAddressPointer+=count;
+
+
+        return stackAndHeap.stackCurrentAddressPointer;
     }
+
 
     public void free(String pointer){
 

@@ -12,6 +12,9 @@ public class MAIN {
         System.out.println("Base Address = " + baseAddress);
         m.setSize("int",4);
 
+        int tempAddress = m.malloc("int",1);
+
+
     }
 
 }
