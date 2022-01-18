@@ -8,7 +8,7 @@ public class StackAndHeap {
     private final String stackBaseAddressPointer;
     public int stackCurrentAddressPointer;
 
-    private int heapBaseAddressPointer;
+    public int heapBaseAddressPointer;
     public int heapCurrentAddressPointer;
 
 
@@ -16,7 +16,7 @@ public class StackAndHeap {
         stackAndHeapList  = new String[stackSize + heapSize];
         stackBaseAddressPointer = getAddress();
         stackCurrentAddressPointer = 0;
-        heapBaseAddressPointer = stackSize;
+        heapBaseAddressPointer = stackSize+heapSize -1;
         heapCurrentAddressPointer = 0;
         System.out.println("stack= "+stackBaseAddressPointer+"\nheap= "+heapBaseAddressPointer);
     }

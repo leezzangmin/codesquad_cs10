@@ -39,11 +39,14 @@ public class Memory {
             padding = 8 - typeSize.get(type);
         }
 
-        for(int i = 0; i < (typeSize.get(type) + padding) * count ; i++){
-            stackAndHeap.stackAndHeapList[ stackAndHeap.heapCurrentAddressPointer++ ] = "occupied";
-        }
-        stackAndHeap.stackCurrentAddressPointer+=count;
+        for(int i = 0; i < count ; i++){
+            stackAndHeap.stackAndHeapList[ stackAndHeap.stackCurrentAddressPointer++ ] =
+                    Integer.toString(stackAndHeap.heapCurrentAddressPointer);
 
+            for(int j=0;j<(typeSize.get(type) + padding); j++) {
+                stackAndHeap.stackAndHeapList[stackAndHeap.heapCurrentAddressPointer++] = "occupied";
+            }
+        }
 
         return stackAndHeap.stackCurrentAddressPointer;
     }
@@ -62,7 +65,22 @@ public class Memory {
     }
 
     public String[] usage(){
+        int allStackArea=this.stackSize;
+        int usingStackArea=0;
+        int allHeapArea=this.heapSize;
+        int usingHeapArea=0;
 
+        for(int i=0; i<this.stackSize; i++){
+            if (!stackAndHeap.stackAndHeapList[i].equals(null)){
+                usingStackArea+=1;
+            }
+        }
+
+        for(int i=stackAndHeap.heapBaseAddressPointer; i<stackAndHeap.heapBaseAddressPointer+this.heapSize; i++){
+            if (!stackAndHeap.stackAndHeapList[i].equals(null)){
+                usingHeapArea+=1;
+            }
+        }
         return new String[]{"asdf"};
     }
 
