@@ -27,6 +27,15 @@ public class ClassifierAlpha {
         return factors.parallelStream().mapToInt(i -> (int)i).sum();
     }
 
+
+
+    Predicate<Integer> isPerfect = i -> sum(factors(i)) == i ? true : false;
+    Predicate<Integer> isAbundant = i -> sum(factors(i)) > i ? true : false;
+    Predicate<Integer> isDeficient = i -> sum(factors(i)) < i ? true : false;
+    Predicate<Integer> isPrime = i -> sum(factors(i))== 1 ? true : false;
+    Predicate<Integer> isSquared = i -> Math.sqrt(i) % 1 == 0 ? true : false; // 어떤 자연수의 제곱이 되는 수
+
+
     public ArrayList<String> defineNumber() {
         ArrayList<String> answer = new ArrayList<String>(4);
         if(isPerfect.test(this.number))
@@ -42,11 +51,7 @@ public class ClassifierAlpha {
         return answer;
     }
 
-    Predicate<Integer> isPerfect = i -> sum(factors(i)) == i ? true : false;
-    Predicate<Integer> isAbundant = i -> sum(factors(i)) > i ? true : false;
-    Predicate<Integer> isDeficient = i -> sum(factors(i)) < i ? true : false;
-    Predicate<Integer> isPrime = i -> sum(factors(i))+this.number-1 == i ? true : false;
-    Predicate<Integer> isSquared = i -> Math.sqrt(i) % 1 == 0 ? true : false; // 어떤 자연수의 제곱이 되는 수
+
 
     public static void main(String[] args) {
         for(int i=2;i<=100;i++){
