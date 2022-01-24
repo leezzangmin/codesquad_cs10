@@ -11,4 +11,17 @@ public class outputView {
     public static void printProcessFinished(){
         System.out.println(systemDone);
     }
+
+    public static void printProcessList(ArrayList<Process> printQueue){
+        int TotalNumberOfThreads = 0;
+        System.out.println("이 프로그램은");
+        for(int i=0;i<printQueue.size();i++){
+            Process temp = printQueue.get(i);
+            int TempNumberOfThreads = temp.myThreads.length;
+            TotalNumberOfThreads += TempNumberOfThreads;
+            System.out.printf("프로세스%s (%d초) - 스레드 %d개\n", temp.processId, temp.duration, TempNumberOfThreads);
+        }
+
+        System.out.printf("총 스레드는 %d개입니다.\n\n", TotalNumberOfThreads);
+    }
 }

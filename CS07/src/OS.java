@@ -29,14 +29,34 @@ public class OS {
         }
     }
 
-    public void run(){
+    public void run_os(){
+        outputView.printProcessList(printQueue);
         outputView.printProcessStatus(printQueue);
 
         while (!processQueue.isEmpty()){
             Process currentProcess = processQueue.poll();
             currentProcess.state = "running";
-            currentProcess.elapsedTime+=1;
-            outputView.printProcessStatus(printQueue);
+
+
+            Thread[] t = new Thread[currentProcess.myThreads.length];
+            for(int i=0;i<currentProcess.myThreads.length;i++){
+                // https://developer88.tistory.com/87
+                t[i]=new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(currentProcess.elapsedTime<currentProcess.duration){
+                        currentProcess.elapsedTime+=1;
+                        }
+                    }
+                });
+                t[i].start();
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
 
             if(currentProcess.elapsedTime == currentProcess.duration){
                 currentProcess.state = "terminated";
@@ -45,7 +65,10 @@ public class OS {
                 currentProcess.state = "waiting";
                 processQueue.add(currentProcess);
             }
+
+           outputView.printProcessStatus(printQueue);
         }
+
         outputView.printProcessStatus(printQueue);
     }
 }
