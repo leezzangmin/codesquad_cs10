@@ -13,7 +13,39 @@
 //단지 출력을 하기 위한 프로그램을 작성하는 게 아니라, 프로세스 타입을 선언하고 프로세스마다 1초씩 동작하는 구조를 구현해야 한다
 //프로그램은 1초마다 전체 프로세스 상태와 누적 실행 시간을 표시한다.
 //프로그램은 모든 프로세스가 멈추고 나면 종료한다.
+import java.util.*;
 
 public class OS {
 
+    private Queue<Process> processQueue = new LinkedList<>();
+    private ArrayList<Process> printQueue = new ArrayList<>();
+
+    OS(){
+        printQueue.add(new Process("A","ready",3));
+        printQueue.add(new Process("B","ready",5));
+        printQueue.add(new Process("C","ready",7));
+        for(int i=0;i<3;i++){
+            processQueue.add(printQueue.get(i));
+        }
+    }
+
+    public void run(){
+        outputView.printProcessStatus(printQueue);
+
+        while (!processQueue.isEmpty()){
+            Process currentProcess = processQueue.poll();
+            currentProcess.state = "running";
+            currentProcess.elapsedTime+=1;
+            outputView.printProcessStatus(printQueue);
+
+            if(currentProcess.elapsedTime == currentProcess.duration){
+                currentProcess.state = "terminated";
+            }
+            else if(currentProcess.elapsedTime < currentProcess.duration){
+                currentProcess.state = "waiting";
+                processQueue.add(currentProcess);
+            }
+        }
+        outputView.printProcessStatus(printQueue);
+    }
 }
