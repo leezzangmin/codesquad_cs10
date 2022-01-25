@@ -18,6 +18,4 @@ public class Process{
     public String toString(){
         return processId + "(" + state + "), " + String.valueOf(elapsedTime) +" / " + String.valueOf(duration) +"sec";
     }
-
-
 }
