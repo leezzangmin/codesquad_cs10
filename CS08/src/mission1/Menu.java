@@ -4,7 +4,13 @@ import java.util.HashMap;
 import java.util.*;
 
 public class Menu {
-    private static String[] menus = {"아메리카노","카페라떼","프라푸치노"};
+    private String menuName;
+    private int duration;
+    ArrayList<Integer> list = new ArrayList<Integer>();
+
+    private static ArrayList<String> menuList
+            = new ArrayList<>(Arrays.asList("아메리카노","카페라떼","프라푸치노"));
+
     private static Map<String,Integer> menuBoard =
             new HashMap<String,Integer>(){{
                 put("아메리카노", 3);
@@ -12,19 +18,21 @@ public class Menu {
                 put("프라푸치노", 10);
             }};
 
-    private String menuName;
-    private int menuDuration;
-
-    Menu(String menuName, int menuDuration){
-        this.menuName = menuName;
-        this.menuDuration = menuDuration;
-        menuBoard.put(this.menuName,this.menuDuration);
+    public Menu(String name){
+        this.menuName = name;
+        this.duration = getMenuDuration(name);
     }
 
+    public Menu getMenu(String menuName){
+        return new Menu(menuName);
+    }
 
+    private static String indexToMenuName(int index){
+        return menuList.get(index - 1);
+    }
 
-
-    public static int getMenuDuration(String menuName){
+    public static int getMenuDuration(String idx){
+        String menuName = indexToMenuName(Integer.parseInt(idx));
         return menuBoard.get(menuName);
     }
 
