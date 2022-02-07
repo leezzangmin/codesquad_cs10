@@ -1,5 +1,5 @@
 use mission2;
-create table mission2(
+create table user(
     userKey int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     startTime datetime NOT NULL,
     endTime datetime default NULL,

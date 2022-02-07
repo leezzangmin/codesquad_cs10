@@ -54,22 +54,24 @@ mysql> create table user_log(
 insert into user_log values("asdf",1,"2020-10-11");
 delete from user_log;
 
+
 DELIMITER $$ 
-CREATE PROCEDURE aa() -- ⓐ myFunction이라는 이름의 프로시져
-BEGIN
-    DECLARE i INT DEFAULT 1; -- ⓑ i변수 선언, defalt값으로 1설정
+CREATE PROCEDURE aa()
+BEGINㅋ
+    DECLARE i INT DEFAULT 1;
     DECLARE A VARCHAR(64) DEFAULT 'zzang';
-    WHILE (i <= 1000000) DO -- ⓒ for문 작성(i가 1000000이 될 때까지 반복)
---        SET A = A+VARCHAR(SELECT LEFT(UUID(), 7)) ;
+    WHILE (i <= 1000000) DO
+
         SET A = concat("zzang_",LEFT(UUID(), 7));
         INSERT INTO user_log VALUES ( A, FLOOR(1 + rand() * 100000 ), FROM_UNIXTIME(FLOOR(unix_timestamp('2022-01-07 00:00:00')+(RAND()*(unix_timestamp('2022-02-07 00:00:00')-unix_timestamp('2010-01-01 00:00:00'))))) ); -- ⓓ 테이블에 i값 넣어주기
-        SET i = i + 1; -- ⓔ i값에 1더해주고 WHILE문 처음으로 이동
+        SET i = i + 1; -
         SET A = 'zzang';
     END WHILE;
 END$$
-DELIMITER ; -- ⓕ구분 기호를 다시 ;로 바꿔주기
-
+DELIMITER ;
+SET AUTOCOMMIT = FALSE;
 CALL aa();
+SET AUTOCOMMIT = TRUE;
 
 http://www.gnujava.com/board/article_view.jsp?article_no=1062&menu_cd=25&board_no=12&table_cd=EPAR05&table_no=05
 https://blog.edit.kr/entry/mysql-%EB%AC%B8%EC%9E%90%EC%97%B4-%ED%95%A9%EC%B9%98%EA%B8%B0
