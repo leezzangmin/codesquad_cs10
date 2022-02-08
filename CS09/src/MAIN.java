@@ -41,13 +41,18 @@ public class MAIN {
         }catch(Exception e){
             e.printStackTrace();
         }
+
+
         Scanner scan = new Scanner(System.in);
         System.out.print("> ");
-        String input = scan.next();
-        if(input.equals("new")){
+        String[] input = (scan.nextLine()).split(" ");
+        if(input[0].equals("new")){
             double dValue = Math.random();
             int seatNum = (int)(dValue * 10);
             System.out.printf("%d번 자리에 앉으세요 ",seatNum);
+        }
+        else{
+            System.out.printf("이제 %d번 자리가 비었습니다.",Integer.parseInt(input[1]));
         }
     }
 }

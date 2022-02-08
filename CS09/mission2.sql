@@ -12,13 +12,13 @@ create table PCseat(
 );
 
 DELIMITER $$
-CREATE PROCEDURE bb() -- ⓐ myFunction이라는 이름의 프로시져
+CREATE PROCEDURE bb()
 BEGIN
-    DECLARE i INT DEFAULT 1; -- ⓑ i변수 선언, defalt값으로 1설정
-    WHILE (i <= 16) DO -- ⓒ for문 작성(i가 1000000이 될 때까지 반복)
+    DECLARE i INT DEFAULT 1;
+    WHILE (i <= 16) DO
     INSERT INTO PCseat VALUES ( i, FALSE );
-    SET i = i + 1; -- ⓔ i값에 1더해주고 WHILE문 처음으로 이동
+    SET i = i + 1;
 END WHILE;
 END$$
-DELIMITER ; -- ⓕ구분 기호를 다시 ;로 바꿔주기
+DELIMITER ;
 CALL bb();

@@ -11,7 +11,7 @@ docker exec -it mysql-container bash
 mysql -u root -p #lcm12345
 show databases;
 
-https://www.44bits.io/ko/post/setup_linux_locale_on_ubuntu_and_debian_container#%EB%A1%9C%EC%BC%80%EC%9D%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EC%96%B8%EC%96%B4-%EC%A7%80%EC%97%AD-%EC%BD%94%EB%93%9C%EC%85%8B
+-- https://www.44bits.io/ko/post/setup_linux_locale_on_ubuntu_and_debian_container#%EB%A1%9C%EC%BC%80%EC%9D%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EC%96%B8%EC%96%B4-%EC%A7%80%EC%97%AD-%EC%BD%94%EB%93%9C%EC%85%8B
 locale
 docker exec -it -e LC_ALL=C.UTF-8 mysql-container bash
 
@@ -20,6 +20,7 @@ apt update
 apt install nano
 nano /etc/mysql/mysql.conf.d/mysqld.cnf
 '''
+
 [client]
 default-character-set = utf8mb4
 
@@ -57,7 +58,7 @@ delete from user_log;
 
 DELIMITER $$ 
 CREATE PROCEDURE aa()
-BEGINㅋ
+BEGIN
     DECLARE i INT DEFAULT 1;
     DECLARE A VARCHAR(64) DEFAULT 'zzang';
     WHILE (i <= 1000000) DO
