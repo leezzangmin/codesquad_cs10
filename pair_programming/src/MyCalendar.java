@@ -1,4 +1,7 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.Locale;
 
 public class MyCalendar {
     // LocalDateTime now = LocalDateTime.now();
@@ -20,6 +23,12 @@ public class MyCalendar {
 
     public LocalDateTime getLocalDateTime(int year, int month, int day) {
         return LocalDateTime.of(year, month, day, 0, 0, 0);
+    }
+
+    public String getKoreanDateTime(LocalDateTime localDateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
+                //new DateTimeFormatterBuilder().toFormatter(Locale.KOREAN);
+        return localDateTime.format(formatter);
     }
 
 }
