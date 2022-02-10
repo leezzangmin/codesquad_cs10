@@ -23,8 +23,6 @@ public class Main {
             SonNim.Order(userCommand);
         }
 
-
-
         OutputView.printFinish();
     }
 }

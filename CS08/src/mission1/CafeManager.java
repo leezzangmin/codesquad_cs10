@@ -24,7 +24,6 @@ public class CafeManager {
                     Barista.addBaristaQueue( OrderQueue.getOrderQueue().poll() );
                 }
             }
-
             second+=1;
         }
     }
